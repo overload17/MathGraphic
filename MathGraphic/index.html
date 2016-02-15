@@ -5,22 +5,27 @@
     <script type="text/javascript">
         function fun1(x) { return Math.sin(x); }
         function fun2(x) { return Math.cos(3 * x); }
-        function fun3(x) { return 2 * x + 3; }
+        function fun3(x) { return а*х*x + b*х + с; }
+        function fun4(x) { return a*x + b; }
+        function fun4(x) { return a/x; }
+
 
         function draw() {
+
             var canvas = document.getElementById("canvas");
             if (null == canvas || !canvas.getContext) return;
-
             var axes = {}, ctx = canvas.getContext("2d");
-            axes.x0 = .5 + .5 * canvas.width;  // x0 pixels from left to x=0
-            axes.y0 = .5 + .5 * canvas.height; // y0 pixels from top to y=0
+            axes.x0 = .5 + .5 * canvas.width;  
+            axes.y0 = .5 + .5 * canvas.height; 
             axes.scale = 40;                 // 40 pixels from x=0 to x=1
             axes.doNegativeX = true;
 
             showAxes(ctx, axes);
+
             funGraph(ctx, axes, fun1, "rgb(11,153,11)", 1);
+
             funGraph(ctx, axes, fun2, "rgb(66,44,255)", 2);
-            funGraph(ctx, axes, fun3, "rgb(66,44,255)", 3);
+            funGraph(ctx, axes, fun4, "rgb(11,44,255)", 3);
         }
 
         function funGraph(ctx, axes, func, color, thick) {
@@ -48,9 +53,15 @@
             ctx.moveTo(xmin, y0); ctx.lineTo(w, y0);  // X axis
             ctx.moveTo(x0, 0); ctx.lineTo(x0, h);  // Y axis
             ctx.stroke();
-        }    </script>
+        }
+
+        function clear() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
 </head>
-<body onload="draw()">
-    <canvas id="canvas" width="502" height="408"></canvas>
+<body onload="">
+<canvas id="canvas" width="502" height="500"></canvas>
+    <button onclick="draw()">Нарисовать sin(x)</button>
 </body>
 </html>
